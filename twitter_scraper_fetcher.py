@@ -19,7 +19,13 @@ def get_elements(twitter_handle):
   return soup.find_all(CONTENT_CONTAINER_TAGS, {"class":CONTENT_CLASS_NAME})
     
 def get_user_tweets(twitter_handle):
-  ## Nothing here yet!
+  elements = get_elements(twitter_handle)
+  tweets = []
+  for post in elements:
+    for text in post.contents:
+      if text.string not in EMPTY_ITEMS: 
+        tweets.append(text.string)
+    
   pass
 
 def clean_tweets_data(tweets):
